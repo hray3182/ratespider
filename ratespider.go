@@ -11,7 +11,6 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-//從台銀獲取匯率數據並輸出成json格式
 type Ratedata struct {
 	currency, cashbuy, cashsell, spotbuy, spotsell string
 }
