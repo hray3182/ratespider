@@ -15,10 +15,10 @@ type Ratedata struct {
 	currency, cashbuy, cashsell, spotbuy, spotsell string
 }
 
-var ratedata []Ratedata
+
 
 func Fetch() ([]Ratedata, error) {
-
+	var ratedata []Ratedata
 	req, _ := http.NewRequest("GET", "https://rate.bot.com.tw/xrt?Lang=zh-TW", nil)
 
 	client := &http.Client{}
