@@ -12,10 +12,8 @@ import (
 )
 
 type Ratedata struct {
-	currency, cashbuy, cashsell, spotbuy, spotsell string
+	Currency, CashBuy, CashSell, SpotBuy, SpotSell string
 }
-
-
 
 func Fetch() ([]Ratedata, error) {
 	var ratedata []Ratedata
