@@ -15,8 +15,9 @@ type Ratedata struct {
 	Currency, CashBuy, CashSell, SpotBuy, SpotSell string
 }
 
-func Fetch() ([]Ratedata, error) {
-	var ratedata []Ratedata
+//取得頁面文本
+func getPageDoc() *goquery.Document {
+
 	req, _ := http.NewRequest("GET", "https://rate.bot.com.tw/xrt?Lang=zh-TW", nil)
 
 	client := &http.Client{}
@@ -39,6 +40,15 @@ func Fetch() ([]Ratedata, error) {
 		log.Fatal(err)
 	}
 
+	return doc
+}
+
+//取得匯率
+func GetRate() []Ratedata {
+	var ratedata []Ratedata
+
+	doc := getPageDoc()
+
 	fn := func(s string) []string {
 		fn := func(i int, s *goquery.Selection) string {
 			return strings.TrimSpace(s.Text())
@@ -57,5 +67,13 @@ func Fetch() ([]Ratedata, error) {
 		ratedata = append(ratedata, single)
 	}
 
-	return ratedata, err
+	return ratedata
+}
+
+func GetLastUpdateTime() string {
+	doc := getPageDoc()
+
+	time := doc.Find("div > p.text-info > span.time").First().Text()
+	fmt.Print(strings.TrimSpace(time))
+	return strings.TrimSpace(time)
 }
