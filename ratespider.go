@@ -1,4 +1,4 @@
-//從台銀獲取匯率數據並輸出成json格式
+//從台銀獲取匯率數據並輸出
 
 package ratespider
 
